@@ -5,7 +5,53 @@
 
 {% block content %}
 <!-- Hero pages -->
-<h2>Hello world</h2>
+<section class="hero container-fluid">
+  <div class="row hero-txt">
+    {% if request.user.is_authenticated %}
+    <div class="col-10 col-md-8 m-auto">
+      <h1 class="">welcome {{user.username}}</h1>
+      <p class="">See what your friends are up to or make a wish list!</p>
+      <div class="">
+        <a class="fs-1 pe-2" href="#"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="left"
+            data-bs-title="View Your Friends List"><i class="fas fa-users"></i></span></a>
+
+        <a class="fs-1 pe-2" href=""><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
+            data-bs-title="Find Friends!"><i class="fas fa-praying-hands"></i></span></a>
+
+        <a class="fs-1" href="#"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="right"
+            data-bs-title="View Your Wish List"><i class="fas fa-gifts"></i></span></a>
+      </div>
+    </div>
+    {% else %}
+    <div class="col-10 col-md-8 m-auto">
+      <h1>
+        Planning an event? wondering how to go about it?
+        welcome to WishGenie the app that keeps giving.
+      </h1>
+      <div class="mt-4">
+        <a class="btn btn-primary btn-large" href="{% url 'account_signup' %}">Register</a>
+        <a class="btn btn-primary btn-large" href="{% url 'account_login' %}">Login</a>
+        <a class="btn btn-primary btn-large" data-bs-toggle="collapse" href="#collapseExample" role="button"
+          aria-expanded="false" aria-controls="collapseExample" href="#">Help</a>
+      </div>
+      <!-- collapse for help text -->
+
+      <div class="collapse mt-4" id="collapseExample">
+        <div class="card card-body">
+          WishGenie is your personal wish-granting app! With just a few taps, you can add items to your wish list and
+          share them with friends and family. Our powerful algorithms will scour the internet to find the best deals and
+          discounts on the items you desire. Plus, with our intuitive interface, keeping track of your wishes has never
+          been easier. Download WishGenie today and make all your wishes come true!
+        </div>
+      </div>
+
+    </div>
+    {% endif %}
+  </div>
+  <div class="row">
+
+  </div>
+</section>
 <!-- footer -->
 
 {% endblock %}
@@ -13,7 +59,7 @@
 {% block postloadjs %}
 {{block.super}}
 <script>
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
 {% endblock %}

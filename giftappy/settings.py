@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'wishes',
+    'profiles',
 
     'django.contrib.sites',
     'allauth',
@@ -81,6 +83,10 @@ TEMPLATES = [
         },
     },
 ]
+
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'giftappy.wsgi.application'
 
