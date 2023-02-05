@@ -12,13 +12,13 @@
       <h1 class="">welcome {{user.username}}</h1>
       <p class="">See what your friends are up to or make a wish list!</p>
       <div class="">
-        <a class="fs-1 pe-2" href="#"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="left"
+        <a class="fs-1 pe-2" href="{% url 'friends' %}"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="left"
             data-bs-title="View Your Friends List"><i class="fas fa-users"></i></span></a>
 
         <a class="fs-1 pe-2" href=""><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
             data-bs-title="Find Friends!"><i class="fas fa-praying-hands"></i></span></a>
 
-        <a class="fs-1" href="#"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="right"
+        <a class="fs-1" href="{% url 'wishes' %}"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="right"
             data-bs-title="View Your Wish List"><i class="fas fa-gifts"></i></span></a>
       </div>
     </div>
