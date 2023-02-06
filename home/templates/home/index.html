@@ -11,17 +11,32 @@
     <div class="col-10 col-md-8 m-auto">
       <h1 class="">welcome {{user.username}}</h1>
       <p class="">See what your friends are up to or make a wish list!</p>
+      <p>{{items}}</p>
       <div class="">
-        <a class="fs-1 pe-2" href="{% url 'friends' %}"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="left"
-            data-bs-title="View Your Friends List"><i class="fas fa-users"></i></span></a>
+        <a class="fs-1 pe-2" href="{% url 'friends' %}"><span class="border-0" data-bs-toggle="tooltip"
+            data-bs-placement="left" data-bs-title="View Your Friends List"><i class="fas fa-users"></i></span></a>
 
-        <a class="fs-1 pe-2" href=""><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        <a class="fs-1 pe-2" data-bs-toggle="collapse" href="#searchBar" role="button" aria-expanded="false"
+          aria-controls="searchBar"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
             data-bs-title="Find Friends!"><i class="fas fa-praying-hands"></i></span></a>
 
-        <a class="fs-1" href="{% url 'wishes' %}"><span class="border-0" data-bs-toggle="tooltip" data-bs-placement="right"
-            data-bs-title="View Your Wish List"><i class="fas fa-gifts"></i></span></a>
+        <a class="fs-1" href="{% url 'wishes' %}"><span class="border-0" data-bs-toggle="tooltip"
+            data-bs-placement="right" data-bs-title="View Your Wish List"><i class="fas fa-gifts"></i></span></a>
+      </div>
+      <div class="col-5 collapse" id="searchBar">
+        <div class="card card-body bg-transparent border-0">
+          <form method="get" action="{% url 'search' %}">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Find Friends" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
+                  class="fas fa-search"></i></button>
+            </div>
+
+          </form>
+        </div>
       </div>
     </div>
+
     {% else %}
     <div class="col-10 col-md-8 m-auto">
       <h1>
@@ -31,12 +46,12 @@
       <div class="mt-4">
         <a class="btn btn-primary btn-large" href="{% url 'account_signup' %}">Register</a>
         <a class="btn btn-primary btn-large" href="{% url 'account_login' %}">Login</a>
-        <a class="btn btn-primary btn-large" data-bs-toggle="collapse" href="#collapseExample" role="button"
-          aria-expanded="false" aria-controls="collapseExample" href="#">Help</a>
+        <a class="btn btn-primary btn-large" data-bs-toggle="collapse" href="#helpText" role="button"
+          aria-expanded="false" aria-controls="helpText" href="#">Help</a>
       </div>
       <!-- collapse for help text -->
 
-      <div class="collapse mt-4" id="collapseExample">
+      <div class="collapse mt-4" id="helpText">
         <div class="card card-body">
           WishGenie is your personal wish-granting app! With just a few taps, you can add items to your wish list and
           share them with friends and family. Our powerful algorithms will scour the internet to find the best deals and

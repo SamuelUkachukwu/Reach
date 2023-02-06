@@ -1,0 +1,10 @@
+{% if items %}
+  <ul>
+    {% for item in items %}
+      <li>found {{ item.name }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No results found.</p>
+{% endif %}
+<p>{{items}}</p>
