@@ -1,10 +1,9 @@
-{% if items %}
+{% if profiles %}
   <ul>
-    {% for item in items %}
-      <li>found {{ item.name }}</li>
+    {% for profile in profiles %}
+      <li>{{ profile.user.username }}</li>
     {% endfor %}
   </ul>
 {% else %}
   <p>No results found.</p>
 {% endif %}
-<p>{{items}}</p>

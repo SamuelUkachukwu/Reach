@@ -1,28 +1,32 @@
 from django.shortcuts import render, reverse, redirect
-from wishes.models import Profile
-
-from django.db.models import Q
 from django.contrib.auth.models import User
+from django.db.models import Q
+from wishes.models import Profile
 
 
 # Create your views here.
 def home(request):
     template_name = 'home/index.html'
-    items = User.objects.all()
+
     context = {
-        'items': items,
+
     }
     return render(request, template_name, context)
 
 
 def search(request):
-    query = None
-    items = User.objects.all()
-    if 'q' in request.GET:
-        query = request.GET['q']
-        if not query:
-            return redirect(reverse('home'))
-
-        queries = Q(name__icontains=query)
-        items = users.filter(queries)
-    return render(request, 'home/search.html', {'items': items})
+    query = request.GET.get('q')
+    profiles = Profile.objects.none()
+    if query:
+        queries = query.split()
+        for q in queries:
+            profiles |= Profile.objects.filter(
+                Q(user__username__icontains=q) |
+                Q(street_address1__icontains=q) |
+                Q(street_address2__icontains=q) |
+                Q(town_or_city__icontains=q) |
+                Q(county__icontains=q) |
+                Q(postcode__icontains=q) |
+                Q(country__icontains=q)
+            )
+    return render(request, 'home/search.html', {'profiles': profiles})
