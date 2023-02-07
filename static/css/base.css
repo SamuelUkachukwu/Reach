@@ -29,8 +29,80 @@
 .hero-txt{
     height: 100vh;
 }
+
+/*----------------------------web-kit scroll bar styling */
+::-webkit-scrollbar {
+    width: .5vw;
+    background-color:  #df9d85;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color:  #c04417;
+  }
+
+  /* --------------------------------friends page styling */
+.profile-header{
+    height: 40vh;
+    position: relative;
+}
+
+/* https://css-tricks.com/snippets/css/transparent-background-images/ */
+.profile-header::after {
+    content: "";
+    background-image: url("/media/hero.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+.profile-txt{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+.profile-box{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 100%;
+    border: 7px solid #fff
+}
+.profile-pic{
+    height:100% ;
+    width:100%;
+}
+.profile-edit{
+    position: absolute;
+    bottom: 5px;
+    left: 6px;
+}
+/*  user follow-unfollow */
+.follow-unfollow {
+    color: hsl(0, 81%, 35%)
+}
 /* ---------------media styling for screen size mobile  */
 
+@media (max-width: 991px) {
+    .profile {
+        height: 150px;
+        width: 150px;
+    }
+}
 /* @media (max-width: 1024px) {
     .hero-1 {
         background-image: url("/media/hero-lg.jpg");
