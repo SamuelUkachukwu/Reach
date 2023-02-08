@@ -1,10 +1,69 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}{{ follower }}'s List{% endblock %}
 
 {% block content %}
-    <h1>Items of {{ follower }}</h1>
-    <ul>
-        {% for item in follower_items %}
-            <li>{{ item.name }}</li>
-        {% endfor %}
-    </ul>
+<!-- nav-bar -->
+<nav class="navbar fixed-top ">
+
+</nav>
+
+<!-- main pages -->
+<section class="container">
+    <div class="row">
+        <div class="col-12 col-md-10 m-auto profile-header">
+            <div class="profile-txt">
+                <div class="bg-dark profile-box">
+                    {% if follower.profile.image %}
+                    <img src="{{ follower.profile.image.url }}" class="img-fluid rounded-start "
+                        alt="User Profile Picture for {{ follower.username }}">
+                    {% else %}
+                    <img src="{{ MEDIA_URL }}wolf-clan.jpg" class="img-fluid rounded-start profile-pic"
+                        alt="User Profile Picture...">
+                    {% endif %}
+                </div>
+                <h1 class="">{{ follower }}</h1>
+                <p class="text-end"><span class="pe-4"><strong>{{ follower.following.count }}</strong>
+                        Following</span> <span><strong>{{ follower.profile.followers.count }}</strong> Followers</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-3 mb-5">
+            {% for item in follower_items %}
+            <div class="col">
+                <div class="card h-100 wish rounded-0 dynamic-card wish-image">
+                    {% if item.image %}
+                    <a class="p-2" href="{{ item.link }}" target="_blank">
+                        <img class="card-img-top" src="{{ item.image.url }}" alt="{{ item.name }}">
+                    </a>
+                    {% else %}
+                    <a class="p-2" href="#">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.name }}">
+                    </a>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5>{{item.name}}</h5>
+                        <p>{{ item.description }}</p>
+                    </div>
+                    <div class="p-3 card-footer bg-transparent border-0">
+                        <span class="ps-5">
+                            {% if item.done %}
+                            <i class="fas fa-check-circle text-info"></i> <small><strong>Achieved</strong></small>
+                            {% else %}
+                            <i class="fas fa-times-circle text-danger"></i> <small><strong>Waiting</strong></small>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- footer -->
+
 {% endblock %}
