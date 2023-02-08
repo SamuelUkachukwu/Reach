@@ -11,9 +11,9 @@
 
 <!-- main pages -->
 <section class="container">
-    <div class="row">
-        <div class="col-12 col-md-10 m-auto profile-header">
-            <div class="profile-txt">
+    <div class="row pt-5">
+        <div class="col-12 col-md-10 m-auto">
+            <div class="d-flex align-items-center">
                 <div class="bg-dark profile-box">
                     {% if follower.profile.image %}
                     <img src="{{ follower.profile.image.url }}" class="img-fluid rounded-start "
@@ -23,9 +23,12 @@
                         alt="User Profile Picture...">
                     {% endif %}
                 </div>
-                <h1 class="">{{ follower }}</h1>
-                <p class="text-end"><span class="pe-4"><strong>{{ follower.following.count }}</strong>
-                        Following</span> <span><strong>{{ follower.profile.followers.count }}</strong> Followers</span></p>
+                <div class="ps-4">
+                    <h1 class="">{{ follower }}</h1>
+                    <p class=""><span class="pe-4"><strong>{{ follower.following.count }}</strong>
+                            Following</span> <span><strong>{{ follower.profile.followers.count }}</strong>
+                            Followers</span></p>
+                </div>
             </div>
         </div>
     </div>

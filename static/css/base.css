@@ -49,6 +49,28 @@
     background-color:  #c04417;
   }
 
+  /* ----------------------------wish list styling */
+.dynamic-card {
+    box-shadow: 2px 2px 3px #d68669;
+}
+
+.dynamic-card:hover {
+    box-shadow: 2px 3px 4px #d66239;
+}
+
+.wish-image {
+    transition: 1s;
+}
+
+.wish-image:hover {
+    overflow: hidden;
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    transform: scale(1.02);
+}
+
   /* --------------------------------friends page styling */
 .profile-header{
     height: 40vh;
