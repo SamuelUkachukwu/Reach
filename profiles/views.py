@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.models import User
+
 from django.contrib import messages
-from wishes.models import Profile
+from wishes.models import Profile, Item
 from .forms import ProfileForm
 
 
@@ -10,7 +12,10 @@ from .forms import ProfileForm
 @login_required
 def profile(request):
     """Renders the friends list page"""
-    context = {}
+    profile = Profile.objects.get(user=request.user)
+    context = {
+        'profile': profile
+    }
     return render(request, 'profiles/profile.html', context)
 
 
@@ -68,3 +73,17 @@ def unfollow(request, username):
     user_profile.followers.remove(unfollow_user)
     messages.success(request, "You have unfollowed {}".format(username))
     return redirect("profile", username=username)
+
+
+def follower_items(request, follower_id):
+    profile = request.user.profile
+    follower = User.objects.get(id=follower_id)
+    if follower in profile.followers.all():
+        follower_items = Item.objects.filter(user=follower)
+        context = {
+            'follower_items': follower_items,
+            'follower': follower,
+        }
+        return render(request, 'profiles/follower_items.html', context)
+    else:
+        return redirect('followers_items')

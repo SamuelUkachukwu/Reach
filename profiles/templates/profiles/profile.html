@@ -18,42 +18,43 @@
             <a class="text-decoration-none nav-link fs-4 profile-edit" href="{% url 'edit_profile' %}"> <i class="fas fa-edit"></i></a>
             <div class="profile-txt text-end">
                 <div class="bg-dark profile-box">
-                    {% if user.profile.image %}
-                    <img src="{{ user.profile.image.url }}" class="img-fluid rounded-start " alt="User Profile Picture...">
+                    {% if profile.image %}
+                    <img src="{{ profile.image.url }}" class="img-fluid rounded-start " alt="User Profile Picture for {{ profile.user.username }}">
                     {% else %}
                     <img src="{{ MEDIA_URL }}wolf-clan.jpg" class="img-fluid rounded-start profile-pic" alt="User Profile Picture...">
                     {% endif %}
                 </div>
-                <h1 class="">welcome {{user.username}}</h1>
-                <p class="text-end"><span class="pe-4"><strong>{{user.userprofile.number_of_follows}}</strong> Following</span> <span><strong>{{follows.count}}</strong> Followers</span></p>
+                <h1 class="">welcome {{ profile.user.username }}</h1>
+                <p class="text-end"><span class="pe-4"><strong>{{ profile.user.following.count }}</strong> Following</span> <span><strong>{{ profile.followers.count }}</strong> Followers</span></p>
             </div>
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4  g-4 mt-3">
         <!-- friend cards -->
-        {% for follow in follows %}
+        {% for follower in profile.followers.all %}
         <div class="col">
             <div class="card">
                 <div class="row g-0">
                     <div class="col-4">
-                        {% if follow.user.profile.image %}
-                        <img src="{{ follow.user.profile.image.url }}" class="img-fluid rounded-start" alt="..." style="width: 100px;">
+
+                        {% if follower.profile.image %}
+                        <img src="{{ follower.profile.image.url }}" class="img-fluid rounded-start" alt="{{ follower.username }}'s Profile Picture" style="width: 100px; height: 100px;">
                         {% else %}
-                        <img src="{{ MEDIA_URL }}wolf-clan.jpg" class="img-fluid rounded-start" alt="..." style="width: 100px;">
+                        <img src="{{ MEDIA_URL }}wolf-clan.jpg" class="img-fluid rounded-start" alt="Default pic set for not found." style="width: 100px; height: 100px;">
                         {% endif %}
                     </div>
                     <div class="col-8 d-flex justify-content-center align-items-center">
                         <div class="">
-                            <p class="card-title"><small class="mb-3"><strong>{{ follow }}</strong></small>
+                            <p class="card-title"><small class="mb-3"><strong>{{ follower.username }}</strong></small>
                             </p>
                             <div class="text-center d-flex">
-                                <a class="pe-4" href=""><i class="fas fa-gifts"></i></a>
+                                <a class="pe-4" href="{% url 'follower_items' follower.id %}"><i class="fas fa-gifts"></i></a>
 
                                 {% if user.is_authenticated %}
                                 <!-- like post form  -->
-                                <form action="{% url 'follow' follow.id %}" method="POST">
+                                <form action="#" method="POST">
                                     {% csrf_token %}
-                                    {% if follow.user.userprofile.follows.count %}
+                                    {% if follow.user.profile.follows.count %}
                                     <button class="border-0 bg-transparent px-2" type="submit"><i class="fas fa-heart follow-unfollow"></i><span> {{ post.number_of_likes }}</span></button>
                                     {% else %}
                                     <button class="border-0 bg-transparent px-2" type="submit"><i class="fas fa-heart"></i><span> {{ post.number_of_likes }}</span></button>

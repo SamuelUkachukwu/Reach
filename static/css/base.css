@@ -58,7 +58,7 @@
 /* https://css-tricks.com/snippets/css/transparent-background-images/ */
 .profile-header::after {
     content: "";
-    background-image: url("/media/hero.jpg");
+    background-image: url("/media/hero-2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
